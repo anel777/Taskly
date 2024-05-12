@@ -51,9 +51,7 @@ class TaskProvider extends ChangeNotifier {
 
   void taskComplete() {
     _taskCompleted++;
-
     Hive.box('taskBox').put('taskCompleted', _taskCompleted);
-
     notifyListeners();
   }
 
@@ -64,7 +62,6 @@ class TaskProvider extends ChangeNotifier {
 
   int taskCount() {
     List<String> taskList = getTaskList();
-
     return taskList.length;
   }
 
