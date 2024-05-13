@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox('taskBox');
-  await Hive.openBox('goalBox');
+  await Hive.openBox('notesBox');
 
   TaskProvider loader = TaskProvider();
   await loader.loadTaskValue();
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => TaskProvider(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Prod',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -34,18 +34,45 @@ class MyApp extends StatelessWidget {
 
 class TaskProvider extends ChangeNotifier {
   int _taskCompleted = 0;
-  int _goalCompleted = 0;
+
+  int _taskDeleted = 0;
 
   TaskProvider() {
     loadTaskValue();
   }
 
   int get taskCompleted => _taskCompleted;
-  int get goalCompleted => _goalCompleted;
+  int get taskDeleted => _taskDeleted;
 
   Future<void> loadTaskValue() async {
     _taskCompleted =
         await Hive.box('taskBox').get('taskCompleted', defaultValue: 0);
+    _taskDeleted =
+        await Hive.box('taskBox').get('taskDeleted', defaultValue: 0);
+    notifyListeners();
+  }
+
+  List<String> getNotesList() {
+    return Hive.box('notesBox').get('notesList', defaultValue: <String>[]);
+  }
+
+  void putNote(String note) {
+    List<String> notesList = getNotesList();
+    notesList.add(note);
+    Hive.box('notesBox').put('notesList', notesList);
+    notifyListeners();
+  }
+
+  void deleteNote(int index) {
+    List<String> noteslist = getNotesList();
+    noteslist.removeAt(index);
+    Hive.box('notesBox').put('notesList', noteslist);
+    notifyListeners();
+  }
+
+  void taskDelete() {
+    _taskDeleted++;
+    Hive.box('taskBox').put('taskDeleted', _taskDeleted);
     notifyListeners();
   }
 
@@ -55,27 +82,13 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void goalComplete() {
-    _goalCompleted++;
-    notifyListeners();
-  }
-
   int taskCount() {
     List<String> taskList = getTaskList();
     return taskList.length;
   }
 
-  int goalCount() {
-    List<String> goalList = getGoalList();
-    return goalList.length;
-  }
-
   List<String> getTaskList() {
     return Hive.box('taskBox').get('taskList', defaultValue: <String>[]);
-  }
-
-  List<String> getGoalList() {
-    return Hive.box('goalBox').get('goalList', defaultValue: <String>[]);
   }
 
   void addTaskToList(String data) {
@@ -85,27 +98,10 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addGoalToList(String data) {
-    List<String> goalList = getGoalList();
-    goalList.add(data);
-    Hive.box('goalBox').put('goalList', goalList);
-    notifyListeners();
-  }
-
   void delTaskFromList(int index) {
     List<String> taskList = getTaskList();
-
     taskList.removeAt(index);
-
     Hive.box('taskBox').put('taskList', taskList);
-    notifyListeners();
-  }
-
-  void delGoalFromList(int index) {
-    List<String> goalList = getGoalList();
-    goalList.removeAt(index);
-    //print("Task removed remaining task : ${taskList.length}");
-    Hive.box('goalBox').put('goalList', goalList);
     notifyListeners();
   }
 
@@ -114,13 +110,6 @@ class TaskProvider extends ChangeNotifier {
     taskList[index] = updatedValue;
     print("Task added $updatedValue at index $index");
     Hive.box('taskBox').put('taskList', taskList);
-    notifyListeners();
-  }
-
-  void updateGoal(String updatedValue, int index) {
-    List<String> goalList = getGoalList();
-    goalList[index] = updatedValue;
-    Hive.box('goalBox').put('taskList', goalList);
     notifyListeners();
   }
 }

@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:learn/notes.dart';
 import 'package:learn/task.dart';
 
 class HomeSecondSection extends StatelessWidget {
@@ -16,11 +18,7 @@ class HomeSecondSection extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Task(),
-                  ));
+              Navigator.of(context).push(_createRoute(Task()));
             },
             child: Container(
               //Task
@@ -28,25 +26,43 @@ class HomeSecondSection extends StatelessWidget {
               width: _screenHeight * .09,
               decoration: BoxDecoration(
                   color: Colors.amber[300],
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(_screenHeight * 0.025)),
             ),
           ),
-          Container(
-            height: _screenHeight * .09,
-            width: _screenHeight * .09,
-            decoration: BoxDecoration(
-                color: Colors.greenAccent,
-                borderRadius: BorderRadius.circular(20)),
-          ),
-          Container(
-            height: _screenHeight * .09,
-            width: _screenHeight * .09,
-            decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(20)),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(_createRoute(Notes()));
+            },
+            child: Container(
+              height: _screenHeight * .09,
+              width: _screenHeight * .09,
+              decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(_screenHeight * 0.025)),
+            ),
           ),
         ],
       ),
     );
   }
+}
+
+Route _createRoute(Widget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var curve = Curves.decelerate;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
 }

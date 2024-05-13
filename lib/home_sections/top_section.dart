@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:learn/main.dart';
+import 'package:learn/task.dart';
 import 'package:provider/provider.dart';
 
 class HomeTopSection extends StatelessWidget {
@@ -45,7 +46,7 @@ class HomeTopSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 30, bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -67,29 +68,11 @@ class HomeTopSection extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 60),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'Goals Remaining : ${value.goalCount()}',
-                      style: TextStyle(letterSpacing: 5),
-                    ),
-                    Container(
-                      width: _screenWidth * .007,
-                      height: _screenWidth * .05,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                    Text(
-                      '${value.goalCompleted}',
-                      style: TextStyle(color: Colors.green),
-                    ),
-                  ],
-                ),
-              ),
+              Center(
+                  child: Text(
+                'Task Ratio : ${value.taskCompleted} / ${value.taskCompleted + value.taskCount()}',
+                style: TextStyle(letterSpacing: 4),
+              )),
               Center(
                 child: Container(
                   width: _screenHeight * .35,
