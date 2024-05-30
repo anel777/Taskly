@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learn/home_sections/second_section.dart';
-import 'package:learn/home_sections/third_section.dart';
-import 'package:learn/home_sections/top_section.dart';
+import 'package:Taskly/home_sections/second_section.dart';
+import 'package:Taskly/home_sections/third_section.dart';
+import 'package:Taskly/home_sections/top_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

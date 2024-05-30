@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:learn/home.dart';
+import 'package:Taskly/home.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => TaskProvider(),
       child: MaterialApp(
-        title: 'Prod',
+        debugShowCheckedModeBanner: false,
+        title: 'Taskly',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

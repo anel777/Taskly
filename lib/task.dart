@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:learn/main.dart';
+import 'package:Taskly/main.dart';
 import 'package:provider/provider.dart';
 
 class Task extends StatelessWidget {
@@ -10,7 +10,7 @@ class Task extends StatelessWidget {
   Widget build(BuildContext context) {
     double _screenSize = MediaQuery.of(context).size.aspectRatio;
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Color(0xFFCBF3F0), // Updated background color
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -31,21 +31,21 @@ class Task extends StatelessWidget {
                       Text(
                         '${value.taskCount()}',
                         style: TextStyle(
-                            color: Colors.blue,
+                            color: Color(0xFFFF9F1C), // Updated color
                             fontSize: _screenSize * 40,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '${value.taskCompleted}',
                         style: TextStyle(
-                            color: Colors.green,
+                            color: Color(0xFF2EC4B6), // Updated color
                             fontSize: _screenSize * 70,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '${value.taskDeleted}',
                         style: TextStyle(
-                            color: Colors.red,
+                            color: Color(0xFFFF6B81), // Updated color
                             fontSize: _screenSize * 40,
                             fontWeight: FontWeight.bold),
                       ),
@@ -64,7 +64,7 @@ class Task extends StatelessWidget {
                                 height: _screenSize * 290,
                                 width: _screenSize * 600,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: Color(0xFFFFFFFF), // Updated color
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Column(
                                   mainAxisAlignment:
@@ -90,7 +90,8 @@ class Task extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(13),
-                                              color: Colors.amber[300],
+                                              color: Color(
+                                                  0xFFFFBF69), // Updated color
                                             ),
                                           ),
                                         ),
@@ -105,7 +106,8 @@ class Task extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(13),
-                                              color: Colors.red[300],
+                                              color: Color(
+                                                  0xFFFF6B81), // Updated color
                                             ),
                                           ),
                                         ),
@@ -137,7 +139,7 @@ class Task extends StatelessWidget {
                     width: _screenSize * 100,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.green[400]),
+                        color: Color(0xFF2EC4B6)), // Updated color
                   ),
                 ),
               ),
@@ -176,7 +178,7 @@ class Task extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(_screenSize * 25),
-                    color: Colors.green[500]),
+                    color: Color(0xFFFF9F1C)), // Updated color
                 child: Text(
                   "Add",
                   style: TextStyle(color: Colors.white),
@@ -232,7 +234,7 @@ class Task extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(_screenSize * 25),
-                    color: Colors.amber[500]),
+                    color: Color(0xFFFFBF69)), // Updated color
                 child: Text(
                   "Edit",
                   style: TextStyle(color: Colors.white),

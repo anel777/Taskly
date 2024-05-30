@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:learn/main.dart';
-import 'package:learn/task.dart';
+import 'package:Taskly/main.dart';
+import 'package:Taskly/task.dart';
 import 'package:provider/provider.dart';
 
 class HomeTopSection extends StatelessWidget {
@@ -25,7 +25,7 @@ class HomeTopSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'PROD',
+                      'TASKLY',
                       style: TextStyle(
                           fontSize: _screenWidth * .14,
                           letterSpacing: _screenHeight * .008,

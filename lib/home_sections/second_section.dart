@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:learn/notes.dart';
-import 'package:learn/task.dart';
+import 'package:Taskly/notes.dart';
+import 'package:Taskly/task.dart';
 
 class HomeSecondSection extends StatelessWidget {
   const HomeSecondSection({super.key});

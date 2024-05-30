@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:learn/main.dart';
+import 'package:Taskly/main.dart';
 import 'package:provider/provider.dart';
 
 class HomeThirdSection extends StatelessWidget {

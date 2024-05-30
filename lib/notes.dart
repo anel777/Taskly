@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:learn/main.dart';
-import 'package:learn/task.dart';
+import 'package:Taskly/main.dart';
+import 'package:Taskly/task.dart';
 import 'package:provider/provider.dart';
 
 class Notes extends StatelessWidget {
@@ -11,13 +11,18 @@ class Notes extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.transparent,
-        title: Text('Notes'),
+        title: Text(
+          'Notes',
+          style: TextStyle(letterSpacing: 8),
+        ),
       ),
       body: Consumer<TaskProvider>(
         builder: (context, provider, _) {
           List<String> notesList = provider.getNotesList();
-          return Center(
+          return Padding(
+            padding: const EdgeInsets.only(top: 40),
             child: CarouselSlider(
               options: CarouselOptions(
                 enlargeCenterPage: true,
